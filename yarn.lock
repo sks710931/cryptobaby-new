@@ -2483,6 +2483,13 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@sharemint/sdk@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@sharemint/sdk/-/sdk-0.4.0.tgz#2be34a2f218c80e72908759687870f1d9da6e0a2"
+  integrity sha512-L+jcaT3R+nRm/4aphDpQ0tUu3t08A2RdXQRD6qmGIAIIJ0WGyLMmc9daO5gDWb9BHv8uGD33/Occ1+B9vey5Tg==
+  dependencies:
+    debug "^4.3.4"
+
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.24.51.tgz#645f33fe4e02defe26f2f5c0410e1c094eac7f5f"
@@ -5105,7 +5112,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@4, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1:
+debug@4, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==

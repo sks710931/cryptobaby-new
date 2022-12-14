@@ -31,11 +31,13 @@ export const Townhall = (): ReactElement => {
               Bitcoin, Ethereum, and decentralized finance.
             </div>
             <div className={classes.text}>
-              The Crypto space has drifted a long way from the original goals of
-              Satoshi Nakamoto’s Bitcoin whitepaper. The goal of this project is
-              to return to those ideals and have fun! We will tell the story of
-              Bitcoin, Ethereum, and decentralized finance.
+              CryptoBaby has 2,100 NFT’s in the genesis collection. This is
+              based on 1/10,000 of Bitcoin’s supply. Holding one of the original
+              CBABY will act as mint pass to future drops. We will partner with
+              Metaverses in providing educational content to our users. The
+              community will be active in shaping the roadmap.
             </div>
+            <img className={classes.mobileImg} src={image} alt=" banner" />
           </div>
         </Grid>
         <Grid xs={12} md={12} lg={4} xl={4}>
@@ -89,8 +91,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   imgdiv: {
     zIndex: "-10",
-    [theme.breakpoints.down(900)]: {
-      marginLeft: "3%",
+    
+    [theme.breakpoints.down(1199)]: {
+      display: "none",
     },
   },
   img: {
@@ -110,4 +113,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     width: "90%",
   },
+  mobileImg:{
+    display: "none",
+    [theme.breakpoints.down(1499)]:{
+      display: "flex !important",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+    }
+  }
 }));

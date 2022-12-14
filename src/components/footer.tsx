@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         left:'85%',
         bottom: '4%',
         display: 'flex',
+        zIndex: 1000,
         [theme.breakpoints.down(1050)]: {
             left: '0',
             bottom: '2%',

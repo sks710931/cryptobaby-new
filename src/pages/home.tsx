@@ -2,10 +2,12 @@
 import { makeStyles } from "@mui/styles";
 import {
   Button,
+  IconButton,
   MenuItem,
   Select,
   Slide,
   Theme,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -27,6 +29,13 @@ import { formatEther, formatUnits, parseUnits } from "@ethersproject/units";
 import { toast } from "react-toastify";
 import slide from "../assests/slide.gif";
 import { JsonRpcProvider } from "@ethersproject/providers";
+import {
+  getOrCreateInviteCode,
+  logVisit,
+  saveAddress,
+  storeReferrer,
+} from "@sharemint/sdk";
+import { ContentCopy } from "@mui/icons-material";
 
 const SlideImage = styled.img`
   height: 65vh;
@@ -62,15 +71,33 @@ const slides = [
 export const Home = (): ReactElement => {
   const classes = useStyles();
   const [mints, setMints] = useState(1);
+  const [code, setCode] = useState();
   const { library, account } = useWeb3React();
   const [totalMints, setTotalMints] = useState(0);
 
+  useEffect(() => {
+    logVisit({ slug: "cryptobaby" });
+    storeReferrer();
+  }, []);
+
+  useEffect(() => {
+    console.log("hit", account);
+    if (account && account !== "") {
+      getInviteCode();
+      saveAddress({ slug: "cryptobaby", address: account! });
+    }
+  }, [account]);
+  const getInviteCode = async () => {
+    const code = await getOrCreateInviteCode({ address: account! });
+    setCode(code.code);
+  };
   const mintNFT = async () => {
     try {
       const signer = await library.getSigner();
       const NFT = new Contract(NFTContract, NFTAbi, signer);
       const result = await NFT.mint(mints);
       await result.wait();
+      saveAddress({ slug: "cryptobaby", transactionHash: result.hash });
       console.log(result);
       await getTotalMinted();
       toast.success(`Successfully minted ${mints} CBaby NFTs`);
@@ -114,6 +141,17 @@ export const Home = (): ReactElement => {
         <Grid item xs={12} md={12} lg={6} xl={6}>
           <div className={classes.main}>
             Welcome to CryptoBaby-- The cutest baby's on the blockchain!
+            <br />
+            <Button
+              onClick={() => {
+                window.open("audit.pdf", "_blank");
+                return false;
+              }}
+              sx={{ mt: 3 }}
+              variant="contained"
+            >
+              View Audit Report
+            </Button>
             <div className={classes.mintBox}>
               <Typography variant="h4" color="primary">
                 Minted {totalMints}/2100
@@ -148,6 +186,33 @@ export const Home = (): ReactElement => {
                   Mint
                 </Button>
               </div>
+              {code && code !== "" && (
+                <div>
+                  <br />
+                  <Typography
+                    sx={{
+                      color: "#fee600",
+                      display: "flex",
+                      alignItems: "center",
+                      marginRight: 8,
+                    }}
+                  >
+                    Referal Link: {`https://cryptobaby.cash/?r=${code}`}{" "}
+                    <Tooltip color="#fc4e57" title="Copy referral link">
+                      <IconButton
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            `https://cryptobaby.cash/?r=${code}`
+                          );
+                          toast.success("Referral link copied!");
+                        }}
+                      >
+                        <ContentCopy fontSize="small" htmlColor="#fc4e57" />
+                      </IconButton>
+                    </Tooltip>
+                  </Typography>
+                </div>
+              )}
             </div>
           </div>
         </Grid>
@@ -213,7 +278,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   mintBtn: {
     height: 55,
     width: 100,
-    fontSize: "1vw !important",
     marginRight: "10px !important",
   },
   mintText: {},
