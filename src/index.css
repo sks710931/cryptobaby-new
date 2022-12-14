@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'Excel';
+  src: local('Excel'), url(./assests/Excelorate-Font-Y2K.otf) format('opentype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+  font-family: 'Vcr';
+  src: local('Vcr'), url(./assests/VCR_OSD_MONO.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+body {
+  margin: 0;
+  font-family: 'Vcr';
+  height: 100%;
+  background-color: black;
+}
+.MuiOutlinedInput-root{
+  /* background-color: white !important; */
+  border: '1px solid #fee900 !important';
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+@media screen and (min-width: 901px) {
+  .btn-connect{
+    
+    font-size: 20px !important ;
+  }
+}
+@media screen and (max-width: 900px) {
+  .btn-connect{
+    margin-top: 30px !important;
+    font-size: 16px ;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .btn-connect{
+    margin-top: 30px !important;
+    font-size: 12px;
+    width: 150px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .btn-connect{
+    margin-top: 30px !important;
+    font-size: 12px ;
+    width: 150px !important;
+  }
+}
