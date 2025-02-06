@@ -189,7 +189,7 @@ export const Home = (): ReactElement => {
               {code && code !== "" && (
                 <div>
                   <br />
-                  <Typography
+                  {/* <Typography
                     sx={{
                       color: "#fee600",
                       display: "flex",
@@ -210,7 +210,7 @@ export const Home = (): ReactElement => {
                         <ContentCopy fontSize="small" htmlColor="#fc4e57" />
                       </IconButton>
                     </Tooltip>
-                  </Typography>
+                  </Typography> */}
                 </div>
               )}
             </div>
